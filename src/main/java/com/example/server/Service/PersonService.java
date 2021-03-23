@@ -20,4 +20,16 @@ public class PersonService {
     public List<Person> getPersonsList() {
         return personDAO.getPersonsList();
     }
+
+    public Person getPersonById(int id){
+        return personDAO.getPersonById(id);
+    }
+
+    public void insertPerson(Person person) {
+        personDAO.insertPerson(person);
+    }
+
+    public void insertPersonURL(int id, String name) {
+        personDAO.insertPersonURL(id,name);
+    }
 }

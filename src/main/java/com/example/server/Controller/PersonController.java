@@ -4,9 +4,7 @@ import com.example.server.Model.Person;
 import com.example.server.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,11 +22,26 @@ public class PersonController {
 
     @GetMapping("/personObject")
     public Person getPerson(){
-        return new Person("M.Farooq",123456);
+        return new Person(1,"M.Farooq");
     }
 
     @GetMapping("/personsList")
     public List<Person> getPersonsList(){
         return personService.getPersonsList();
+    }
+
+    @GetMapping("/person/{id}")
+    public Person getPersonById(@PathVariable("id") int id){
+        return personService.getPersonById(id);
+    }
+
+    @PostMapping("insertPersonURL/{id}/{name}")
+    public void insertPersonURL(@PathVariable int id,@PathVariable String name){
+        personService.insertPersonURL(id,name);
+    }
+
+    @PostMapping("/insertPerson")
+    public void insertPerson(@RequestBody Person person){
+        personService.insertPerson(person);
     }
 }
