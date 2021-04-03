@@ -36,12 +36,14 @@ public class PersonController {
     }
 
     @PostMapping("insertPersonURL/{id}/{name}")
-    public void insertPersonURL(@PathVariable int id,@PathVariable String name){
+    public Person insertPersonURL(@PathVariable int id,@PathVariable String name){
         personService.insertPersonURL(id,name);
+        return new Person(id,name);
     }
 
     @PostMapping("/insertPerson")
-    public void insertPerson(@RequestBody Person person){
+    public Person insertPerson(@RequestBody Person person){
         personService.insertPerson(person);
+        return person;
     }
 }
